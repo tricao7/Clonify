@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Voice Cloning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Hello, this is our voice cloning app!</h1>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <div class="container">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="fileInput">Choose a file:</label>
+            <input type="file" name="fileInput" id="fileInput" accept=".wav">
+            <input type="submit" value="Upload" class="button">
+        </form>
+        <div class="rectangle"></div>
+    <div class="rectangle" style="margin-left: 15px;"></div>
+    <div class="rectangle" style="margin-left: 15px;"></div>
+    </div>
 </body>
 </html>
 

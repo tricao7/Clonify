@@ -1,5 +1,49 @@
 /* style.css */
-body {
-    background-color:#051554; 
-    color: #a8cbff;
+body { 
+    background: linear-gradient(25deg, #4e7afe, #9da3fb, #bfc9fe, #566ed1);
+    background-position: center center;
+    animation: gradient 5s ease-in-out infinite;
+    color: #fcfcfc;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container {
+    display: relative;
+    width: 400px;
+    height: 800px;
+    margin: 0px auto;
+}
+
+.rectangle {
+    position: absolute;
+    top: 20;
+    left: 0;
+    width: 600px;
+    height: 200px;
+    background-color: #d8c3f871;
+    border-radius: 15px;
+    border: 10px solid #c7c3f8;
+    margin: 20px;
+}
+
+form {
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+}
+
+.button {
+    margin-top: 20px;
 }
