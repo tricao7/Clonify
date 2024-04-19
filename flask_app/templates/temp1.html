@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,14 @@
 </head>
 <body>
     <h1>Hello, this is our voice cloning app!</h1>
-    <div class="container">
+    <div class="container1" style="margin-left: 300px;">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="fileInput">Choose a file:</label>
+            <input type="file" name="fileInput" id="fileInput" accept=".wav">
+            <input type="submit" value="Upload" class="button">
+        </form>
+        <div class="rectangle"></div>
+    <div class="container2" style="margin-left: 300px;">
         <form action="/upload" method="post" enctype="multipart/form-data">
             <label for="fileInput">Choose a file:</label>
             <input type="file" name="fileInput" id="fileInput" accept=".wav">
@@ -15,8 +22,44 @@
         </form>
         <div class="rectangle"></div>
     <div class="rectangle" style="margin-left: 15px;"></div>
-    <div class="rectangle" style="margin-left: 15px;"></div>
     </div>
 </body>
-</html>
+</html> -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Cloning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hello, this is our voice cloning app!</h1>
+    <div class="container" id="top-container">
+        <div class="rectangle" id="topRectangle">
+            <input type="file" id="fileInput" accept=".wv" onchange="loadFile(event)">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="rectangle"></div>
+    </div>
+
+    <div class="container">
+        <div class="rectangle"></div>
+    </div>
+    <script>
+        function loadFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const contents = reader.result;
+                document.getElementById('topRectangle').innerText = contents;
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>

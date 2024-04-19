@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css
 body { 
     background: linear-gradient(25deg, #4e7afe, #9da3fb, #bfc9fe, #566ed1);
     background-position: center center;
@@ -17,11 +17,16 @@ body {
         background-position: 0% 50%;
     }
 }
-.container {
+.container1 {
     display: relative;
     width: 400px;
-    height: 800px;
-    margin: 0px auto;
+    height: 400px;
+}
+
+.container2 {
+    display: relative;
+    width: 400px;
+    height: 400px;
 }
 
 .rectangle {
@@ -45,5 +50,50 @@ form {
 }
 
 .button {
-    margin-top: 20px;
+    margin-top: 10px;
+} */
+
+body {
+    background: linear-gradient(25deg, #4e7afe, #9da3fb, #bfc9fe, #566ed1);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column; /* Stack containers vertically */
+}
+
+.title{
+    color: white;           /* Set title color to white */
+    margin-left: 50px;     /* Adjust margin from the left side */
+}
+
+.container {
+    width: 500px;
+    height: 300px;
+    margin: 10px 10px;
+    display: inline-block; /* Horizontally align the containers to the left */
+}
+
+.rectangle {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+    border-radius: 15px;
+    border: 3px solid #c7c3f8;
+}
+
+#topRectangle {
+    position: relative;
+}
+
+#fileInput {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
 }
