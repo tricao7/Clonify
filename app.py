@@ -2,13 +2,13 @@ import streamlit as st
 import requests 
 import json
 
-def load_file(file):
-    try:
-        content = file.read()
-        return content
-    except Exception as e:
-        st.error(f"Error loading file: {e}")
-        return None
+# def load_file(file):
+#     try:
+#         content = file.read()
+#         return content
+#     except Exception as e:
+#         st.error(f"Error loading file: {e}")
+#         return None
     
 def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None):
     payload = {
@@ -22,13 +22,12 @@ def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, 
     headers = {"X-Payload": json.dumps(payload)}
     files = {'file': ('uploaded_file.wav', content, 'audio/wav')}
     
-    try:
-        response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        return response.content
-    except requests.RequestException as e:
-        st.error(f"Error generating voice: {e}")
-        return None
+    response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
+    response.raise_for_status()  # Raise an exception for HTTP errors
+    return response.content
+    # except requests.RequestException as e:
+    #     st.error(f"Error generating voice: {e}")
+    #     return None
 
 # do you want preset or do you want your own
 # if preset, then choose from a list of presets
@@ -44,28 +43,46 @@ def main():
     top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01)
     top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1)
 
-    if st.button("Generate Voice"):
-        if uploaded_file is not None:
-            content = load_file(uploaded_file)
+
+    if uploaded_file is not None:
+        content = uploaded_file.read()
+        st.audio(content, format='audio/wav')
         
-            if content is not None:
-                st.write("File Content:")
-                st.write(content)
+        if st.button("Generate Voice"):
+            output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
 
-                output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
+            if output:
+                st.audio(output, format='audio/wav')
 
-                if output:
-                    st.write("Generated Voice:")
-                    st.audio(output, format='audio/wav')
-
-                    st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
-
-def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
-    with open(file_name, 'wb') as f:
-        f.write(bin_file)
+            
+#     if st.button("Generate Voice"):
+#         if uploaded_file is not None:
+#             st.audio(uploaded_file, format="wav")
+#             content = uploaded_file.read()
+#             st.audio(content, format='audio/wav')
         
-    href = f'<a href="data:file/wav;base64,{bin_file.decode()}" download="{file_name}">{file_label}</a>'
-    return href
+#             if content is not None:
+#                 st.write("File Content:")
+#                 st.write(content)
+
+#                 output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
+
+#                 if output:
+#                     st.write("Generated Voice:")
+#                     st.audio(output, format='audio/wav')
+
+#                     st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
+
+# def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
+#     with open(file_name, 'wb') as f:
+#         f.write(bin_file)
+        
+#     href = f'<a href="data:file/wav;base64,{bin_file.decode()}" download="{file_name}">{file_label}</a>'
+#     return href
+
+
+if __name__ == "__main__":
+    main()
 
 ### Add sliders for user to adjust output 
 ### Add section for user to input text, with limit of 220 characters
@@ -75,6 +92,3 @@ def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file
 # request.post() to send the file to the server 
 # server will process the file and return the output
 
-
-if __name__ == "__main__":
-    main()
