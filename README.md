@@ -1,6 +1,4 @@
-
-<img src="images/icon.png" alt="Clonify Logo" style="width:300px;"/>
-
+# ![](images/Clonify.png)
 
 # Clonify
 
