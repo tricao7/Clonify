@@ -37,7 +37,8 @@ def main():
     st.title('Voice Cloning App')
 
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
-    st.audio(uploaded_file, format="wav")
+    if uploaded_file is not None:
+        st.audio(uploaded_file, format="wav")
 
 
     text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
