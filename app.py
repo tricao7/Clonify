@@ -48,17 +48,6 @@ def main():
     top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01, help='Top P is a parameter that controls the probability of the model choosing the next token. A higher value will result in more randomness in the generated audio.')
     top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1, help='Top K is a parameter that controls the number of tokens to consider for the next token. A higher value will result in more randomness in the generated audio.')
 
-
-    # if uploaded_file is not None:
-    #     content = uploaded_file.read()
-    #     st.audio(content, format='audio/wav')
-        
-    #     if st.button("Generate Voice"):
-    #         output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
-
-    #         if output:
-    #             st.audio(output, format='audio/wav')
-
             
     if st.button("Generate Voice"):
         if uploaded_file is not None:
@@ -88,12 +77,3 @@ def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file
 
 if __name__ == "__main__":
     main()
-
-### Add sliders for user to adjust output 
-### Add section for user to input text, with limit of 220 characters
-### Add button to start the process
-### Output file for user to download
-
-# request.post() to send the file to the server 
-# server will process the file and return the output
-
