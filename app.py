@@ -37,6 +37,8 @@ def main():
     st.title('Voice Cloning App')
 
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
+    st.audio(uploaded_file, format="wav")
+
 
     text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
     guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
@@ -57,21 +59,21 @@ def main():
             
     if st.button("Generate Voice"):
         if uploaded_file is not None:
-            # st.audio(uploaded_file, format="wav")
             content = uploaded_file.read()
-            st.audio(content, format='audio/wav')
         
             if content is not None:
-                st.write("File Content:")
-                # st.write(content)
+                st.write("Generated Audio:")
+                # st.write(content) # Prints the binary and it's ugly.
 
+                # THIS IS THE CODE THAT IS CAUSING THE ERRORS CURRENTLY WE MUST FIX HTTP ERROR 500.
                 output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
 
                 if output:
-                    st.write("Generated Voice:")
                     st.audio(output, format='audio/wav')
 
                     st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
+                else:
+                    st.error("Error generating voice")
 
 def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
     with open(file_name, 'wb') as f:
