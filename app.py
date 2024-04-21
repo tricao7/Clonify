@@ -34,7 +34,7 @@ def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, 
 
 # if you want your own, upload yours own
 def main():
-    st.title('Voice Cloning App')
+    st.title('UPDATE:Voice Cloning App')
 
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
     if uploaded_file is not None:
