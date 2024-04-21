@@ -57,13 +57,13 @@ def main():
             
     if st.button("Generate Voice"):
         if uploaded_file is not None:
-            st.audio(uploaded_file, format="wav")
+            # st.audio(uploaded_file, format="wav")
             content = uploaded_file.read()
             st.audio(content, format='audio/wav')
         
             if content is not None:
                 st.write("File Content:")
-                st.write(content)
+                # st.write(content)
 
                 output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
 
