@@ -1,6 +1,6 @@
-# VoiceCloning
+# Clonify
 
-🤖 VoiceCloning is a program that can clone voices and apply them to narration and text to speech.
+🤖 **Clonify** is a program that can clone voices and apply them to narration and text to speech.
 
 - Generative AI for vocal cloning enhances customization in gaming and media by offering personalized audio.
 - This technology augments text-to-speech models, enabling efficient production of NPC voices cutting costs for businesses.
@@ -37,7 +37,7 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 [sample_input.webm](https://github.com/tricao7/VoiceCloning/assets/72780544/b6bea05c-abab-46e0-8439-15c210db86c6)
 
 
-🎯 **VoiceCloning Generated Audio Example with the following text content:** 
+🎯 **Clonify Generated Audio Example with the following text content:** 
 
 *"Let me generate a piece of text to see if my voice is easily replicable. If it's easy then it should be pretty accurate, otherwise I'm a bum."*
 
@@ -52,7 +52,7 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 
 ## Conclusion
 
-🤝 In short, our VoiceCloning platform will allow our clients to
+🤝 In short, **Clonify** will allow our clients to
 
 - Save on development budget.
 - Provide a unique immersive experience to users.
