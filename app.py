@@ -44,41 +44,41 @@ def main():
     top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1)
 
 
-    if uploaded_file is not None:
-        content = uploaded_file.read()
-        st.audio(content, format='audio/wav')
+    # if uploaded_file is not None:
+    #     content = uploaded_file.read()
+    #     st.audio(content, format='audio/wav')
         
-        if st.button("Generate Voice"):
-            output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
+    #     if st.button("Generate Voice"):
+    #         output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
 
-            if output:
-                st.audio(output, format='audio/wav')
+    #         if output:
+    #             st.audio(output, format='audio/wav')
 
             
-#     if st.button("Generate Voice"):
-#         if uploaded_file is not None:
-#             st.audio(uploaded_file, format="wav")
-#             content = uploaded_file.read()
-#             st.audio(content, format='audio/wav')
+    if st.button("Generate Voice"):
+        if uploaded_file is not None:
+            st.audio(uploaded_file, format="wav")
+            content = uploaded_file.read()
+            st.audio(content, format='audio/wav')
         
-#             if content is not None:
-#                 st.write("File Content:")
-#                 st.write(content)
+            if content is not None:
+                st.write("File Content:")
+                st.write(content)
 
-#                 output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
+                output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
 
-#                 if output:
-#                     st.write("Generated Voice:")
-#                     st.audio(output, format='audio/wav')
+                if output:
+                    st.write("Generated Voice:")
+                    st.audio(output, format='audio/wav')
 
-#                     st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
+                    st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
 
-# def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
-#     with open(file_name, 'wb') as f:
-#         f.write(bin_file)
+def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
+    with open(file_name, 'wb') as f:
+        f.write(bin_file)
         
-#     href = f'<a href="data:file/wav;base64,{bin_file.decode()}" download="{file_name}">{file_label}</a>'
-#     return href
+    href = f'<a href="data:file/wav;base64,{bin_file.decode()}" download="{file_name}">{file_label}</a>'
+    return href
 
 
 if __name__ == "__main__":
