@@ -8,11 +8,11 @@ VoiceCloning is a program that can clone voices and apply them to narration and 
 
 ## Table of Contents
 
-1. [Quickstart](#quickstart)
-2. [Usage](#usage)
-3. [Upcoming](#upcoming)  
-4. [Conclusion](#conclusion)
-5. [References](#references)
+1. [Quickstart](#quickstart) 💨
+2. [Usage](#usage) 🌊
+3. [Upcoming](#upcoming) 🎉
+4. [Conclusion](#conclusion) 🏁
+5. [References](#references) 🎱
 
 ## Quickstart
 
@@ -44,9 +44,9 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 
 ## Upcoming
 
-- [x] Customizable parameters to vary output.
-- [ ] Better and faster inference with less reference data.
-- [ ] Expand generated audio duration.
+- [x] 🧩 Customizable parameters to vary output.
+- [ ] ⚡️ Better and faster inference with less reference data.
+- [ ] ⌚️ Expand generated audio duration.
 
 ## Conclusion
 
