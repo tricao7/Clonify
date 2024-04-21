@@ -1,6 +1,6 @@
-<center>
-    <img src="images/icon.png" alt="Clonify Logo" style="width:300px;"/>
-</center>
+
+<img src="images/icon.png" alt="Clonify Logo" style="width:300px;"/>
+
 
 # Clonify
 
