@@ -1,3 +1,7 @@
+<center>
+    <img src="images/icon.png" alt="Clonify Logo" style="width:300px;"/>
+</center>
+
 # Clonify
 
 🤖 **Clonify** is a program that can clone voices and apply them to narration and text to speech.
