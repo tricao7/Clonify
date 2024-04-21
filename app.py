@@ -42,7 +42,7 @@ def main():
 
 
     text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
-    st.markdown(f'<span title="{'More info'}" style="border-bottom: 1px dashed; cursor: help;">{'Influences the style or intonation of the generated voice.'}</span>', unsafe_allow_html=True)
+    st.markdown(f'<span title="More info" style="border-bottom: 1px dashed; cursor: help;">"Influences the style or intonation of the generated voice."</span>', unsafe_allow_html=True)
     guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1)
     top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01)
     top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1)
