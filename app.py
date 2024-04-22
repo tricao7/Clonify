@@ -66,6 +66,7 @@ def main():
     st.image("images/Clonify.png", use_column_width=True)
     # Display title
     st.title("Welcome to Clonify!")
+    st.markdown("---")
     # Display description
     st.write(
         "Clonify is a text-to-speech (TTS) application that allows you to generate voice from text. \
@@ -86,6 +87,8 @@ def main():
     st.write("2. Enter the text you want to be spoken.")
     st.write("3. Adjust the guidance, top P, and top K parameters.")
     st.write("4. Click the 'Generate Voice' button to generate the audio.")
+    # Display horizontal line
+    st.markdown("---")
 
     # Get uploaded file from user
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
