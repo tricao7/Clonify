@@ -47,7 +47,7 @@ def main():
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
 
     if uploaded_file is not None:
-        save_path = "/var/tmp/" + uploaded_file.name
+        save_path = 'inputs/' + uploaded_file.name  
         
         # Save the uploaded file to the specified path
         saved_file_path = save_uploaded_file(uploaded_file, save_path)
