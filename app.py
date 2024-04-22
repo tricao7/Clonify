@@ -3,21 +3,18 @@ import requests
 import json
 import os
 
-def save_uploaded_file(uploaded_file):
-    # Create a directory to store the uploaded files if it doesn't exist
-    os.makedirs("uploaded_files", exist_ok=True)
-    
-    # Define the file path to save the uploaded file
-    file_path = os.path.join("uploaded_files", uploaded_file.name)
+def save_uploaded_file(uploaded_file, save_path):
+    # Create the directory if it doesn't exist
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
     
     # Read the uploaded file content
     file_content = uploaded_file.read()
     
-    # Write the content to the new file
-    with open(file_path, "wb") as f:
+    # Write the content to the specified file path
+    with open(save_path, "wb") as f:
         f.write(file_content)
-    
-    return file_path
+
+    return save_path
     
 def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None):
     payload = {
@@ -50,8 +47,13 @@ def main():
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
 
     if uploaded_file is not None:
-        saved_file_path = save_uploaded_file(uploaded_file)
+        save_path = "/var/tmp/" + uploaded_file.name
+        
+        # Save the uploaded file to the specified path
+        saved_file_path = save_uploaded_file(uploaded_file, save_path)
+        
         st.write(f"File saved at: {saved_file_path}")
+
 
         st.audio(uploaded_file, format="wav")
         
