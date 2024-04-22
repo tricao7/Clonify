@@ -56,24 +56,22 @@ def main():
 
         text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
 
-        # Add slider with increased font size
-        guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1, help='Guidance is a parameter that controls the amount of control the user has over the generated audio. A higher value will result in more control over the generated audio.')
-        top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01, help='Top P is a parameter that controls the probability of the model choosing the next token. A higher value will result in more randomness in the generated audio.')
-        top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1, help='Top K is a parameter that controls the number of tokens to consider for the next token. A higher value will result in more randomness in the generated audio.')
+    # Add slider with increased font size
+    guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1, help='Guidance is a parameter that controls the amount of control the user has over the generated audio. A higher value will result in more control over the generated audio.')
+    top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01, help='Top P is a parameter that controls the probability of the model choosing the next token. A higher value will result in more randomness in the generated audio.')
+    top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1, help='Top K is a parameter that controls the number of tokens to consider for the next token. A higher value will result in more randomness in the generated audio.')
 
-        if st.button("Generate Voice"):
-            content = uploaded_file.read()
-            if content:
-                st.write("Generated Audio:")
-                fname = '/home/rishimohan/tts/VoiceCloning/metavoice/fam/llm/' + uploaded_file.name
-                output = tts_request(text_input, fname, speaker_ref_path=fname, guidance=guidance, top_p=top_p, top_k=top_k)
-                if output:
-                    st.audio(output, format='audio/wav')
-                    # st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
-                else:
-                    st.error("Error generating voice")
-    else:
-        st.write("Please upload a .wav file")
+    if st.button("Generate Voice"):
+        content = uploaded_file.read()
+        if content:
+            st.write("Generated Audio:")
+            fname = '/home/rishimohan/tts/VoiceCloning/metavoice/fam/llm/' + uploaded_file.name
+            output = tts_request(text_input, fname, speaker_ref_path=fname, guidance=guidance, top_p=top_p, top_k=top_k)
+            if output:
+                st.audio(output, format='audio/wav')
+                # st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
+            else:
+                st.error("Error generating voice")
 
 def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
     with open(file_name, 'wb') as f:
