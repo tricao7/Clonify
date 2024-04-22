@@ -72,15 +72,16 @@ def main():
     )
     st.write("Instructions:")
     st.write(
-        "1. Upload a 30 second .wav file that you want to clone the voice of. Best results with prompt:"
+        "1. Upload a 30 second .wav file that you want to clone the voice of."
     )
-    st.write(
-        "   'The North Wind and the Sun were disputing which was the stronger, when a traveler came along wrapped in a warm cloak.\
-        They agreed that the one who first succeeded in making the traveler take his cloak off should be considered stronger than the other.\
-        Then the North Wind blew as hard as he could, but the more he blew the more closely did the traveler fold his cloak around him;\
-        and at last the North Wind gave up the attempt. Then the Sun shined out warmly, and immediately the traveler took off his cloak.\
-        And so the North Wind was obliged to confess that the Sun was the stronger of the two.'"
-    )
+    with st.expander("Click here for a sample prompt (for best results): "):
+        st.write(
+            "   'The North Wind and the Sun were disputing which was the stronger, when a traveler came along wrapped in a warm cloak.\
+            They agreed that the one who first succeeded in making the traveler take his cloak off should be considered stronger than the other.\
+            Then the North Wind blew as hard as he could, but the more he blew the more closely did the traveler fold his cloak around him;\
+            and at last the North Wind gave up the attempt. Then the Sun shined out warmly, and immediately the traveler took off his cloak.\
+            And so the North Wind was obliged to confess that the Sun was the stronger of the two.'"
+        )
     st.write("2. Enter the text you want to be spoken.")
     st.write("3. Adjust the guidance, top P, and top K parameters.")
     st.write("4. Click the 'Generate Voice' button to generate the audio.")
