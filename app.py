@@ -74,7 +74,8 @@ def main():
                 # st.write(content) # Prints the binary and it's ugly.
 
                 # THIS IS THE CODE THAT IS CAUSING THE ERRORS CURRENTLY WE MUST FIX HTTP ERROR 500.
-                output = tts_request(text_input, uploaded_file.name, speaker_ref_path=uploaded_file.name, guidance=guidance, top_p=top_p, top_k=top_k)
+                fname = '/home/rishimohan/tts/VoiceCloning/metavoice/fam/llm/' + uploaded_file.name
+                output = tts_request(text_input, fname, speaker_ref_path=fname, guidance=guidance, top_p=top_p, top_k=top_k)
 
                 if output:
                     st.audio(output, format='audio/wav')
