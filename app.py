@@ -6,7 +6,7 @@ import requests
 import streamlit as st
 
 
-def get_current_utc_datetime():
+def get_current_utc_datetime() -> str:
     """
     Get the current datetime with UTC timezone
     """
@@ -15,7 +15,7 @@ def get_current_utc_datetime():
     return str(current_utc_datetime)
 
 
-def save_uploaded_file(uploaded_file, save_path):
+def save_uploaded_file(uploaded_file: bytes, save_path: str) -> str:
     """
     Saves the uploaded file to the specified path.
     Parameters:
@@ -38,8 +38,13 @@ def save_uploaded_file(uploaded_file, save_path):
 
 
 def tts_request(
-    text, content=None, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None
-):
+    text: str,
+    content: str = None,
+    speaker_ref_path: str = None,
+    guidance: float = 3.0,
+    top_p: float = 0.95,
+    top_k: int = None,
+) -> bytes:
     """
     Create a POST request to the TTS server to generate voice from text.
     Parameters:
@@ -62,6 +67,7 @@ def tts_request(
 
     headers = {"X-Payload": json.dumps(payload)}
     files = {"file": ("uploaded_file.wav", content, "audio/wav")}
+
     # Process the request
     response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
     response.raise_for_status()  # Raise an exception for HTTP errors
@@ -71,9 +77,11 @@ def tts_request(
 def main():
     # Display image and center
     st.image("images/Clonify.png", use_column_width=True)
+
     # Display title
     st.title("Welcome to Clonify!")
     st.markdown("---")
+
     # Display description
     st.write(
         "Clonify is a text-to-speech (TTS) application that allows you to generate voice from text. \
@@ -93,11 +101,11 @@ def main():
     st.write("2. Enter the text you want to be spoken.")
     st.write("3. Adjust the guidance, top P, and top K parameters.")
     st.write("4. Click the 'Generate Voice' button to generate the audio.")
+
     # Display horizontal line
     st.markdown("---")
 
     # Get uploaded file from user
-
     uploaded_file = st.file_uploader(
         "Upload a .wav / .mp3 / .flac file (30 seconds min):",
         type=["wav", "mp3", "flac"],
@@ -161,15 +169,15 @@ def main():
             )
             if output:
                 st.audio(output, format="audio/wav")
-                # st.markdown(get_binary_file_downloader_html(
-                #    output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
             else:
                 st.error("Error generating voice")
         else:
             st.error("No file uploaded")
 
 
-def get_binary_file_downloader_html(bin_file, file_label="File", file_name="file.wav"):
+def get_binary_file_downloader_html(
+    bin_file: bytes, file_label: str = "File", file_name: str = "file.wav"
+) -> str:
     """
     Generates a link to download the given binary file.
     Parameters:
