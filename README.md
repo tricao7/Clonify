@@ -43,7 +43,7 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 *"Invest in Clonify! It's an app that offers endless customization with high accuracy. 
 Crafting Voices, Crafting Impact: Let Us Be Your Voice!"*
 
-[sample_output.webm](https://github.com/tricao7/Clonify/assets/72780544/0bab6bce-03ce-42ec-99ee-e2d8d7aa5b3e)
+[sample_output.webm](https://github.com/tricao7/Clonify/assets/72780544/6de5be75-3be9-4939-87b7-e5a00d9b1543)
 
 ## Upcoming
 
