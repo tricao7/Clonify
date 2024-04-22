@@ -31,14 +31,7 @@ def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, 
     response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
     response.raise_for_status()  # Raise an exception for HTTP errors
     return response.content
-    # except requests.RequestException as e:
-    #     st.error(f"Error generating voice: {e}")
-    #     return None
 
-# do you want preset or do you want your own
-# if preset, then choose from a list of presets
-
-# if you want your own, upload yours own
 def main():
     st.title('Voice Cloning App')
 
@@ -49,8 +42,6 @@ def main():
 
         # Save the uploaded file to the specified path
         saved_file_path = save_uploaded_file(uploaded_file, save_path)
-
-        st.write(f"File saved at: {saved_file_path}")
 
         st.audio(uploaded_file, format="wav")
 
