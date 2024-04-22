@@ -36,8 +36,7 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 
 ✉️ **Context/Reference Audio Example:**
 
-[sample_input.webm](https://github.com/tricao7/VoiceCloning/assets/72780544/b6bea05c-abab-46e0-8439-15c210db86c6)
-
+[sample_input.webm](https://github.com/tricao7/Clonify/assets/72780544/20748f69-0aa2-4dd6-bc09-17a064216f0e)
 
 🎯 **Clonify Generated Audio Example with the following text content:** 
 
