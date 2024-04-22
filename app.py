@@ -91,15 +91,19 @@ def main():
     st.markdown("---")
 
     # Get uploaded file from user
-    uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
+
+    uploaded_file = st.file_uploader(
+        "Upload a .wav / .mp3 / .flac file (30 seconds min):",
+        type=["wav", "mp3", "flac"],
+    )
 
     if uploaded_file is not None:
         # Initialize the save path
         save_path = "metavoice/fam/llm/" + uploaded_file.name
         # Save the uploaded file to the specified path
-        saved_file_path = save_uploaded_file(uploaded_file, save_path)
+        save_uploaded_file(uploaded_file, save_path)
 
-        # st.write(f"File saved at: {saved_file_path}")
+        # Display the Uploaded Audio
         st.audio(uploaded_file, format="wav")
 
     text_input = st.text_area(
