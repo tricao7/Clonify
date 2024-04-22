@@ -1,8 +1,18 @@
+from datetime import datetime, timezone
 import json
 import os
 
 import requests
 import streamlit as st
+
+
+def get_current_utc_datetime():
+    """
+    Get the current datetime with UTC timezone
+    """
+    current_utc_datetime = datetime.now(timezone.utc)
+    # Return the datetime as a string
+    return str(current_utc_datetime)
 
 
 def save_uploaded_file(uploaded_file, save_path):
@@ -71,9 +81,7 @@ def main():
         The generated audio will be a voice clone of the uploaded file."
     )
     st.write("Instructions:")
-    st.write(
-        "1. Upload a 30 second .wav file that you want to clone the voice of."
-    )
+    st.write("1. Upload a 30 second .wav file that you want to clone the voice of.")
     with st.expander("Click here for a sample prompt (for best results): "):
         st.write(
             "   'The North Wind and the Sun were disputing which was the stronger, when a traveler came along wrapped in a warm cloak.\
@@ -96,8 +104,9 @@ def main():
     )
 
     if uploaded_file is not None:
-        # Initialize the save path
-        save_path = "metavoice/fam/llm/" + uploaded_file.name
+        # Initialize the save path and current time
+        tnow = get_current_utc_datetime()
+        save_path = "/home/files/input/" + tnow + uploaded_file.name
         # Save the uploaded file to the specified path
         save_uploaded_file(uploaded_file, save_path)
 
@@ -141,15 +150,11 @@ def main():
         content = uploaded_file.read()
         if content:
             st.write("Generated Audio:")
-            fname = (
-                "/home/rishimohan/tts/VoiceCloning/metavoice/fam/llm/"
-                + uploaded_file.name
-            )
             # create a request to the TTS server
             output = tts_request(
                 text_input,
-                fname,
-                speaker_ref_path=fname,
+                save_path,
+                speaker_ref_path=save_path,
                 guidance=guidance,
                 top_p=top_p,
                 top_k=top_k,
