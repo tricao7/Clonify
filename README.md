@@ -18,7 +18,7 @@
 
 ## Quickstart
 
-🎯 Access the Web-Application. ([To Application](http://34.125.211.65/))
+🎯 Access the Web-Application.
 
 - Upload your own audio.
 - Provide desired content for text-to-speech (TTS) model.
