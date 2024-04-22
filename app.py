@@ -54,9 +54,6 @@ def tts_request(
     files = {"file": ("uploaded_file.wav", content, "audio/wav")}
     # Process the request
     response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
-    # Write responce status
-    st.write(response.status_code)
-    st.write(response.content)
     response.raise_for_status()  # Raise an exception for HTTP errors
     return response.content
 
