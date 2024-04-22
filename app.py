@@ -45,7 +45,7 @@ def main():
 
         st.audio(uploaded_file, format="wav")
 
-        text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
+    text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
 
     # Add slider with increased font size
     guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1, help='Guidance is a parameter that controls the amount of control the user has over the generated audio. A higher value will result in more control over the generated audio.')
