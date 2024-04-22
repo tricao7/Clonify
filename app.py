@@ -42,7 +42,7 @@ def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, 
 
 # if you want your own, upload yours own
 def main():
-    st.title('UPDATE:Voice Cloning App')
+    st.title('Voice Cloning App')
 
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
 
@@ -80,7 +80,7 @@ def main():
                 if output:
                     st.audio(output, format='audio/wav')
 
-                    st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
+                    # st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
                 else:
                     st.error("Error generating voice")
     else:
