@@ -47,7 +47,7 @@ def main():
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
 
     if uploaded_file is not None:
-        save_path = 'inputs/' + uploaded_file.name  
+        save_path = 'metavoice/fam/llm/' + uploaded_file.name  
         
         # Save the uploaded file to the specified path
         saved_file_path = save_uploaded_file(uploaded_file, save_path)
@@ -74,7 +74,7 @@ def main():
                 # st.write(content) # Prints the binary and it's ugly.
 
                 # THIS IS THE CODE THAT IS CAUSING THE ERRORS CURRENTLY WE MUST FIX HTTP ERROR 500.
-                output = tts_request(text_input, f'''../../../{saved_file_path}''', speaker_ref_path=f'''../../../{saved_file_path}''', guidance=guidance, top_p=top_p, top_k=top_k)
+                output = tts_request(text_input, uploaded_file.name, speaker_ref_path=uploaded_file.name, guidance=guidance, top_p=top_p, top_k=top_k)
 
                 if output:
                     st.audio(output, format='audio/wav')
