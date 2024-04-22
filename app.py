@@ -6,6 +6,14 @@ import streamlit as st
 
 
 def save_uploaded_file(uploaded_file, save_path):
+    """
+    Saves the uploaded file to the specified path.
+    Parameters:
+        - uploaded_file: the uploaded file object
+        - save_path: the path to save the uploaded file
+    Returns:
+        - save_path: the path where the file was saved
+    """
     # Create the directory if it doesn't exist
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
@@ -20,8 +28,20 @@ def save_uploaded_file(uploaded_file, save_path):
 
 
 def tts_request(
-    text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None
+    text, content=None, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None
 ):
+    """
+    Create a POST request to the TTS server to generate voice from text.
+    Parameters:
+        - text: the text to be spoken
+        - content: the content of the uploaded file
+        - speaker_ref_path: the path to the reference speaker file
+        - guidance: the guidance parameter
+        - top_p: the top P parameter
+        - top_k: the top K parameter
+    Returns:
+        - response.content: the content of the generated audio file
+    """
     payload = {
         "text": text,
         "speaker_ref_path": speaker_ref_path,
@@ -32,35 +52,30 @@ def tts_request(
 
     headers = {"X-Payload": json.dumps(payload)}
     files = {"file": ("uploaded_file.wav", content, "audio/wav")}
-
+    # Process the request
     response = requests.post("http://localhost:58003/tts", files=files, headers=headers)
+    # Write responce status
     st.write(response.status_code)
     st.write(response.content)
     response.raise_for_status()  # Raise an exception for HTTP errors
     return response.content
-    # except requests.RequestException as e:
-    #     st.error(f"Error generating voice: {e}")
-    #     return None
 
 
-# do you want preset or do you want your own
-# if preset, then choose from a list of presets
-
-
-# if you want your own, upload yours own
 def main():
+    # Display image and center
+    st.image("images/Clonify.png", use_column_width=True)
+    # Display title
     st.title("Voice Cloning App")
-
+    # Get uploaded file from user
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
 
     if uploaded_file is not None:
+        # Initialize the save path
         save_path = "metavoice/fam/llm/" + uploaded_file.name
-
         # Save the uploaded file to the specified path
         saved_file_path = save_uploaded_file(uploaded_file, save_path)
 
-        st.write(f"File saved at: {saved_file_path}")
-
+        # st.write(f"File saved at: {saved_file_path}")
         st.audio(uploaded_file, format="wav")
 
         text_input = st.text_area(
@@ -92,10 +107,10 @@ def main():
             max_value=100,
             value=50,
             step=1,
-            help="Top K is a parameter that controls the number of tokens to consider for the next token. \
-                A higher value will result in more randomness in the generated audio.",
+            help="Top K is a parameter that controls the number of tokens to consider for the next token.",
         )
 
+        # Generate voice
         if st.button("Generate Voice"):
             content = uploaded_file.read()
             if content:
@@ -104,6 +119,7 @@ def main():
                     "/home/rishimohan/tts/VoiceCloning/metavoice/fam/llm/"
                     + uploaded_file.name
                 )
+                # create a request to the TTS server
                 output = tts_request(
                     text_input,
                     fname,
@@ -123,6 +139,15 @@ def main():
 
 
 def get_binary_file_downloader_html(bin_file, file_label="File", file_name="file.wav"):
+    """
+    Generates a link to download the given binary file.
+    Parameters:
+        - bin_file: the binary file content
+        - file_label: the label of the download link
+        - file_name: the name of the file to be downloaded
+    Returns:
+        - href: the HTML code for the download link
+    """
     with open(file_name, "wb") as f:
         f.write(bin_file)
     href = f'<a href="data:file/wav;base64,{bin_file.decode()}" download="{file_name}">{file_label}</a>'
