@@ -74,7 +74,7 @@ def main():
                 # st.write(content) # Prints the binary and it's ugly.
 
                 # THIS IS THE CODE THAT IS CAUSING THE ERRORS CURRENTLY WE MUST FIX HTTP ERROR 500.
-                output = tts_request(text_input, f'''../../../{saved_file_path}''', speaker_ref_path=saved_file_path, guidance=guidance, top_p=top_p, top_k=top_k)
+                output = tts_request(text_input, f'''../../../{saved_file_path}''', speaker_ref_path=f'''../../../{saved_file_path}''', guidance=guidance, top_p=top_p, top_k=top_k)
 
                 if output:
                     st.audio(output, format='audio/wav')
