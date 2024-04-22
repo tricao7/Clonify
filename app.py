@@ -68,6 +68,7 @@ def main():
             
         if st.button("Generate Voice"):
             content = uploaded_file.read()
+            st.write(content)
             
             if content:
                 st.write("Generated Audio:")
