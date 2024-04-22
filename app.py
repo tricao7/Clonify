@@ -1,14 +1,23 @@
 import streamlit as st
 import requests 
 import json
+import os
 
-# def load_file(file):
-#     try:
-#         content = file.read()
-#         return content
-#     except Exception as e:
-#         st.error(f"Error loading file: {e}")
-#         return None
+def save_uploaded_file(uploaded_file):
+    # Create a directory to store the uploaded files if it doesn't exist
+    os.makedirs("uploaded_files", exist_ok=True)
+    
+    # Define the file path to save the uploaded file
+    file_path = os.path.join("uploaded_files", uploaded_file.name)
+    
+    # Read the uploaded file content
+    file_content = uploaded_file.read()
+    
+    # Write the content to the new file
+    with open(file_path, "wb") as f:
+        f.write(file_content)
+    
+    return file_path
     
 def tts_request(text, content, speaker_ref_path=None, guidance=3.0, top_p=0.95, top_k=None):
     payload = {
@@ -39,23 +48,26 @@ def main():
     st.title('UPDATE:Voice Cloning App')
 
     uploaded_file = st.file_uploader("Upload a .wav file", type=".wav")
+
     if uploaded_file is not None:
+        saved_file_path = save_uploaded_file(uploaded_file)
+        st.write(f"File saved at: {saved_file_path}")
+
         st.audio(uploaded_file, format="wav")
+        
 
+        text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
 
-    text_input = st.text_area("Enter text to be spoken (Max 220 characters):", max_chars=220)
-
-    # Add slider with increased font size
-    guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1, help='Guidance is a parameter that controls the amount of control the user has over the generated audio. A higher value will result in more control over the generated audio.')
-    top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01, help='Top P is a parameter that controls the probability of the model choosing the next token. A higher value will result in more randomness in the generated audio.')
-    top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1, help='Top K is a parameter that controls the number of tokens to consider for the next token. A higher value will result in more randomness in the generated audio.')
+        # Add slider with increased font size
+        guidance = st.slider("Guidance", min_value=0.0, max_value=10.0, value=3.0, step=0.1, help='Guidance is a parameter that controls the amount of control the user has over the generated audio. A higher value will result in more control over the generated audio.')
+        top_p = st.slider("Top P", min_value=0.0, max_value=1.0, value=0.95, step=0.01, help='Top P is a parameter that controls the probability of the model choosing the next token. A higher value will result in more randomness in the generated audio.')
+        top_k = st.number_input("Top K", min_value=1, max_value=100, value=50, step=1, help='Top K is a parameter that controls the number of tokens to consider for the next token. A higher value will result in more randomness in the generated audio.')
 
             
-    if st.button("Generate Voice"):
-        if uploaded_file is not None:
+        if st.button("Generate Voice"):
             content = uploaded_file.read()
-        
-            if content is not None:
+            
+            if content:
                 st.write("Generated Audio:")
                 # st.write(content) # Prints the binary and it's ugly.
 
@@ -68,6 +80,8 @@ def main():
                     st.markdown(get_binary_file_downloader_html(output, file_label='Download Audio', file_name='output.wav'), unsafe_allow_html=True)
                 else:
                     st.error("Error generating voice")
+    else:
+        st.write("Please upload a .wav file")
 
 def get_binary_file_downloader_html(bin_file, file_label='File', file_name='file.wav'):
     with open(file_name, 'wb') as f:
