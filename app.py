@@ -68,14 +68,13 @@ def main():
             
         if st.button("Generate Voice"):
             content = uploaded_file.read()
-            st.write(content)
             
             if content:
                 st.write("Generated Audio:")
                 # st.write(content) # Prints the binary and it's ugly.
 
                 # THIS IS THE CODE THAT IS CAUSING THE ERRORS CURRENTLY WE MUST FIX HTTP ERROR 500.
-                output = tts_request(text_input, content, guidance=guidance, top_p=top_p, top_k=top_k)
+                output = tts_request(text_input, speaker_ref_path=saved_file_path, guidance=guidance, top_p=top_p, top_k=top_k)
 
                 if output:
                     st.audio(output, format='audio/wav')
