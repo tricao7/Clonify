@@ -5,7 +5,6 @@ import os
 import requests
 import streamlit as st
 
-
 def get_current_utc_datetime() -> str:
     """
     Get the current datetime with UTC timezone
