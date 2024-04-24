@@ -4,7 +4,6 @@ import os
 import requests
 import streamlit as st
 
-
 def save_uploaded_file(uploaded_file, save_path):
     """
     Saves the uploaded file to the specified path.
