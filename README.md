@@ -36,15 +36,14 @@ And so the North Wind was obliged to confess that the Sun was the stronger of th
 
 ✉️ **Context/Reference Audio Example:**
 
-[sample_input.webm](https://github.com/tricao7/VoiceCloning/assets/72780544/b6bea05c-abab-46e0-8439-15c210db86c6)
-
+[sample_input.webm](https://github.com/tricao7/Clonify/assets/72780544/95c7b8a8-7298-4991-b3c4-9e22e3486031)
 
 🎯 **Clonify Generated Audio Example with the following text content:** 
 
-*"Let me generate a piece of text to see if my voice is easily replicable. If it's easy then it should be pretty accurate, otherwise I'm a bum."*
+*"Invest in Clonify! It's an app that offers endless customization with high accuracy. 
+Crafting Voices, Crafting Impact: Let Us Be Your Voice!"*
 
-[sample_output.webm](https://github.com/tricao7/VoiceCloning/assets/72780544/c81e6f3b-de45-4570-85e1-a6e183c5ed04)
-
+[sample_output.webm](https://github.com/tricao7/Clonify/assets/72780544/6de5be75-3be9-4939-87b7-e5a00d9b1543)
 
 ## Upcoming
 
