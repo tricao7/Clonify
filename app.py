@@ -1,9 +1,11 @@
-from datetime import datetime, timezone
 import json
 import os
+from datetime import datetime, timezone
 
 import requests
+import scipy.io.wavfile as wav
 import streamlit as st
+
 
 def get_current_utc_datetime() -> str:
     """
@@ -12,6 +14,21 @@ def get_current_utc_datetime() -> str:
     current_utc_datetime = datetime.now(timezone.utc)
     # Return the datetime as a string
     return str(current_utc_datetime)
+
+
+def check_length(data, rate=44100):
+    """
+    Checks to see if an uploaded audio file is longer than 30 seconds.
+    Parameters:
+        - data: audio data
+        - rate: sample rate of the audio file (default is 44100)
+    Returns:
+        - True if the audio file is longer than 30 seconds
+        - False if the audio file is shorter than 30 seconds
+    """
+    if len(data) / rate <= 30:
+        return False
+    return True
 
 
 def save_uploaded_file(uploaded_file: bytes, save_path: str) -> str:
@@ -111,6 +128,13 @@ def main():
     )
 
     if uploaded_file is not None:
+        # Check to make sure that uploaded file is > 30 seconds long.
+        rate, data = wav.read(uploaded_file)
+        # Make sure the audio file is longer than 30 seconds
+        if not check_length(data, rate):
+            st.error("Input audio file must be longer than 30 seconds.")
+            return
+
         # Initialize the save path and current time
         tnow = get_current_utc_datetime()
         save_path = "/home/files/input/" + tnow + uploaded_file.name
