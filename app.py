@@ -128,11 +128,11 @@ def main():
     )
 
     if uploaded_file is not None:
-        # Check to make sure that uploaded file is > 30 seconds long.
+        # Read the uploaded audio file
         rate, data = wav.read(uploaded_file)
         # Make sure the audio file is longer than 30 seconds
         if not check_length(data, rate):
-            st.error("Input audio file must be longer than 30 seconds.")
+            st.error("Input audio file must be longer than 30 seconds.", icon="🚨")
             return
 
         # Initialize the save path and current time
