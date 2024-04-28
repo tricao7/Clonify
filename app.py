@@ -153,7 +153,7 @@ def main():
         "Guidance",
         min_value=0.0,
         max_value=10.0,
-        value=3.0,
+        value=5.0,
         step=0.1,
         help="Guidance controls the amount of control the user has over the \
             generated audio. A higher value will result in more control over the generated audio.",
@@ -162,7 +162,7 @@ def main():
         "Top P",
         min_value=0.0,
         max_value=1.0,
-        value=0.95,
+        value=0.5,
         step=0.01,
         help="Top P controls the probability of the model choosing the next token. \
             A higher value will result in less randomness in the generated audio.",
