@@ -45,6 +45,8 @@ def main():
     st.write("4. Click the 'Generate Voice' button to generate the audio.")
     if st.button("Demo"):
         st.switch_page("pages/app.py")
+    if st.button("Sign up/Log in"):
+        st.switch_page("pages/user_auth.py")
     # Display horizontal line
     st.markdown("---")
 
