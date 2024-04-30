@@ -2,8 +2,22 @@ import requests
 import scipy.io.wavfile as wav
 import streamlit as st
 
+
 def main():
-        # Display image and center
+    # Display image and center
+    st.set_page_config(initial_sidebar_state="collapsed")
+
+    st.markdown(
+        """
+        <style>
+        [data-testid="collapsedControl"] {
+        display: none
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
     st.image("images/Clonify.png", use_column_width=True)
 
     # Display title
@@ -29,7 +43,8 @@ def main():
     st.write("2. Enter the text you want to be spoken.")
     st.write("3. Adjust the guidance, top P, and top K parameters.")
     st.write("4. Click the 'Generate Voice' button to generate the audio.")
-
+    if st.button("Demo"):
+        st.switch_page("pages/app.py")
     # Display horizontal line
     st.markdown("---")
 
