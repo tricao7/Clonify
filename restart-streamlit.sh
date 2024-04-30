@@ -12,6 +12,6 @@ gcloud compute ssh --project=ds-entrepreneurship --zone=us-west4-a ds-compute-cl
     echo 'Pulling new files' && \
     git pull && \
     echo 'Restarting Streamlit server in tmux shell streamlit' && \
-    tmux new-session -d -s 'streamlit' 'streamlit run app.py' && \
+    tmux new-session -d -s 'streamlit' 'streamlit run Hello.py' && \
     echo 'Done!'
 "
