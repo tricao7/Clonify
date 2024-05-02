@@ -92,7 +92,7 @@ def tts_request(
 
 
 def main():
-    st.set_page_config(page_title="App", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="Clonify", initial_sidebar_state="collapsed")
     st.image("images/Clonify.png", use_column_width=True)
     st.markdown("---")
     # st.write("Instructions:")

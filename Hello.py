@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def main():
-    st.set_page_config(page_title="Landing Page",
+    st.set_page_config(page_title="Clonify",
                        initial_sidebar_state="collapsed")
 
     st.markdown("""

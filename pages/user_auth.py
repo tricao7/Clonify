@@ -2,7 +2,7 @@ import streamlit as st
 import pymongo
 from pymongo.server_api import ServerApi
 
-st.set_page_config(page_title="User Sign Up/Log In")
+st.set_page_config(page_title="Clonify")
 st.markdown("""
         <style>
         .stButton>button {
