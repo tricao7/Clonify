@@ -47,7 +47,7 @@ def main():
         </style>
         """, unsafe_allow_html=True)
 
-    st.image("images/clonify.png", use_column_width=True)
+    st.image("images/Clonify.png", use_column_width=True)
     st.markdown('<h1 class="title">Elevate Your Audio Experience with AI-Generated Voices</h1>',
                 unsafe_allow_html=True)
     col1, col2 = st.columns(2)
